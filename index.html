@@ -5,151 +5,159 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Print$Buddy - Late Night Printing at MNIT Jaipur</title>
 
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
+    :root {
+      --primary-color: #3e64ff;
+      --accent-color: #ffcb05;
+      --dark-color: #1a1a1a;
+      --light-color: #f9f9f9;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    html {
-      scroll-behavior: smooth;
-    }
+
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #0d1117;
-      color: #e6edf3;
       line-height: 1.6;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
+      background: var(--light-color);
+      color: var(--dark-color);
     }
 
     nav {
-      background-color: #161b22;
-      padding: 1rem 2rem;
+      background: var(--primary-color);
+      color: #fff;
+      padding: 1rem 0;
+    }
+
+    nav .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 1rem;
     }
+
     nav .logo {
-      font-weight: 700;
       font-size: 1.5rem;
-      color: #58a6ff;
+      font-weight: 700;
     }
+
     nav ul {
       display: flex;
-      gap: 1rem;
       list-style: none;
     }
-    nav ul li a {
-      color: #e6edf3;
-      font-weight: 500;
+
+    nav ul li {
+      margin-left: 1.5rem;
     }
-    nav ul li a:hover {
-      color: #58a6ff;
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
     }
 
     header {
-      padding: 3rem 2rem;
+      padding: 4rem 1rem;
+      background: #eaefff;
       text-align: center;
-      background: #161b22;
     }
+
     header h1 {
-      font-size: 2.5rem;
-      color: #58a6ff;
-      margin-bottom: 1rem;
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
     }
+
     .cta-button {
       display: inline-block;
-      background: #238636;
+      background: var(--primary-color);
       color: white;
-      padding: 0.75rem 1.5rem;
+      padding: 0.8rem 1.4rem;
       border-radius: 8px;
+      text-decoration: none;
       margin-top: 1rem;
       font-weight: 600;
-      transition: background 0.3s ease;
-    }
-    .cta-button:hover {
-      background: #2ea043;
     }
 
     .container {
-      padding: 2rem;
       max-width: 1000px;
       margin: auto;
+      padding: 2rem 1rem;
     }
+
     .section-title {
       font-size: 1.8rem;
       margin-bottom: 1rem;
-      color: #58a6ff;
       text-align: center;
-    }
-
-    .section-bg {
-      background-color: #0d1117;
     }
 
     .cards {
-      display: grid;
+      display: flex;
+      flex-wrap: wrap;
       gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      justify-content: center;
     }
+
     .card {
-      background: #161b22;
-      border-radius: 12px;
+      background: white;
       padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      max-width: 300px;
       text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
+
     .card .icon {
       font-size: 2rem;
-      margin-bottom: 0.5rem;
-      color: #58a6ff;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
     }
 
     .whatsapp-info {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      color: green;
       margin: 1rem 0;
-      color: #25d366;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      justify-content: center;
     }
 
     iframe {
       width: 100%;
-      height: 800px;
       border: none;
-      margin-top: 1rem;
+      margin-top: 2rem;
     }
 
     footer {
+      background: var(--primary-color);
+      color: white;
       text-align: center;
       padding: 1rem;
-      background-color: #161b22;
       font-size: 0.9rem;
-      color: #8b949e;
     }
 
     @media (max-width: 768px) {
       nav ul {
-        flex-direction: column;
-        background: #161b22;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        padding: 1rem;
-        border-radius: 8px;
         display: none;
       }
-      nav ul.active {
-        display: flex;
+      nav .logo {
+        margin: auto;
+      }
+      .cards {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
@@ -157,17 +165,19 @@
 <body>
 
   <nav>
-    <div class="logo">Print$Buddy</div>
-    <ul id="menu">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#order">Order</a></li>
-    </ul>
+    <div class="container">
+      <div class="logo">Print$Buddy</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#order">Order</a></li>
+      </ul>
+    </div>
   </nav>
 
   <header>
     <h1>Print$Buddy 🖨️</h1>
-    <p>Your Late-Night Printing Partner @ MNIT Jaipur</p>
+    <p>Late Night Printing in MNIT Jaipur Hostels</p>
     <a href="https://wa.me/919251028070" target="_blank" class="cta-button">Order on WhatsApp</a>
   </header>
 
@@ -175,49 +185,50 @@
     <section id="about" class="container">
       <h2 class="section-title">Your Lifesaver for Deadlines</h2>
       <p>
-        Tired of printer shops being closed when you need them most? Print$Buddy is a student-run initiative inside MNIT Hostels. Fast, reliable & always awake when you are!
+        Tired of closed printing shops during late hours? Print$Buddy is a student-run service inside MNIT hostels, made to help you meet your deadlines. Open late night, reliable, fast and just a WhatsApp away!
       </p>
     </section>
 
-    <section id="services" class="container section-bg">
-      <h2 class="section-title">What We Offer</h2>
+    <section id="services" class="container">
+      <h2 class="section-title">Our Services</h2>
       <div class="cards">
         <div class="card">
           <div class="icon"><i class="fas fa-file-alt"></i></div>
           <h3>Document Printing</h3>
-          <p>High-quality B&W and Color prints for assignments, reports & notes.</p>
+          <p>High-quality B/W & Color printing for notes, reports, and assignments.</p>
         </div>
         <div class="card">
           <div class="icon"><i class="fas fa-image"></i></div>
           <h3>A4 Posters</h3>
-          <p>Custom prints and trending anime art to decorate your hostel room.</p>
+          <p>Print posters of anime, memes, events, or custom art for your room.</p>
         </div>
         <div class="card">
           <div class="icon"><i class="fas fa-moon"></i></div>
-          <h3>Late-Night + Delivery</h3>
-          <p>Open late hours. Paid delivery available to girls' hostels on campus.</p>
+          <h3>Late-Night & Delivery</h3>
+          <p>Open till late! Girls hostel delivery available for small fee.</p>
         </div>
       </div>
     </section>
 
     <section id="order" class="container">
-      <h2 class="section-title">Place Your Order</h2>
-      <p style="text-align:center;">Send your PDFs and details via WhatsApp below or fill the Google Form.</p>
-      <div class="whatsapp-info"><i class="fab fa-whatsapp"></i> 9251028070</div>
-      <p style="text-align:center;">
-        <a href="https://wa.me/919251028070" class="cta-button">Chat on WhatsApp</a>
-      </p>
+      <h2 class="section-title">Place an Order</h2>
+      <p>Send your PDF & requirements to:</p>
+      <div class="whatsapp-info">
+        <i class="fab fa-whatsapp"></i> 9251028070
+      </div>
+      <a href="https://wa.me/919251028070" class="cta-button" target="_blank">Start WhatsApp Chat</a>
+      <br><br>
+      <p><strong>Pickup:</strong> Hostel 8 (H8) <br>
+      <strong>Delivery:</strong> Girls Hostel - Doorstep</p>
 
-      <p style="margin-top: 2rem;"><strong>📍 Pickup:</strong> H-8 Hostel (Boys) <br><strong>🚚 Delivery:</strong> Girls' Hostels</p>
-
-      <!-- Embedded Google Form -->
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdLUfYETBYOjj3bQ7cZk-KV4n7tKVP8F7gkM_0Rbhbl5cu1qA/viewform?embedded=true">Loading…</iframe>
+      <h3 style="margin-top:2rem;">📋 Or Fill the Form Below</h3>
+      <!-- Google Form Embed -->
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeebxD2MlspEUEm9M1zj-bA7sQrbR5UdNaEKN85dwHwPjP5lA/viewform?embedded=true" height="900">Loading…</iframe>
     </section>
   </main>
 
   <footer>
-    &copy; 2025 Print$Buddy @ MNIT Jaipur. All rights reserved.
+    &copy; 2025 Print$Buddy @ MNIT Jaipur. Built by MNIT students, for MNIT students.
   </footer>
-
 </body>
 </html>
