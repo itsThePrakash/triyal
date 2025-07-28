@@ -1,113 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Print$Buddy - Late Night Printing at MNIT Jaipur</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Print$Buddy - Late Night Printing at MNIT Jaipur</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0d1117;
+      color: #e6edf3;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    nav {
+      background-color: #161b22;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #58a6ff;
+    }
+    nav ul {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+    }
+    nav ul li a {
+      color: #e6edf3;
+      font-weight: 500;
+    }
+    nav ul li a:hover {
+      color: #58a6ff;
+    }
+
+    header {
+      padding: 3rem 2rem;
+      text-align: center;
+      background: #161b22;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #58a6ff;
+      margin-bottom: 1rem;
+    }
+    .cta-button {
+      display: inline-block;
+      background: #238636;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .cta-button:hover {
+      background: #2ea043;
+    }
+
+    .container {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #58a6ff;
+      text-align: center;
+    }
+
+    .section-bg {
+      background-color: #0d1117;
+    }
+
+    .cards {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .card {
+      background: #161b22;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .card .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #58a6ff;
+    }
+
+    .whatsapp-info {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+      color: #25d366;
+      text-align: center;
+    }
+
+    iframe {
+      width: 100%;
+      height: 800px;
+      border: none;
+      margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #161b22;
+      font-size: 0.9rem;
+      color: #8b949e;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        background: #161b22;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        padding: 1rem;
+        border-radius: 8px;
+        display: none;
+      }
+      nav ul.active {
+        display: flex;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <nav>
-        <div class="container">
-            <div class="logo">Print$Buddy</div>
-            <ul>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#order">Order Now</a></li>
-                <li><a href="#feedback">Feedback</a></li>
-            </ul>
+  <nav>
+    <div class="logo">Print$Buddy</div>
+    <ul id="menu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#order">Order</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Print$Buddy 🖨️</h1>
+    <p>Your Late-Night Printing Partner @ MNIT Jaipur</p>
+    <a href="https://wa.me/919251028070" target="_blank" class="cta-button">Order on WhatsApp</a>
+  </header>
+
+  <main>
+    <section id="about" class="container">
+      <h2 class="section-title">Your Lifesaver for Deadlines</h2>
+      <p>
+        Tired of printer shops being closed when you need them most? Print$Buddy is a student-run initiative inside MNIT Hostels. Fast, reliable & always awake when you are!
+      </p>
+    </section>
+
+    <section id="services" class="container section-bg">
+      <h2 class="section-title">What We Offer</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="icon"><i class="fas fa-file-alt"></i></div>
+          <h3>Document Printing</h3>
+          <p>High-quality B&W and Color prints for assignments, reports & notes.</p>
         </div>
-    </nav>
-
-    <header id="home">
-        <div class="container">
-            <h1>Print$Buddy 🖨️</h1>
-            <p>Your Late-Night Printing Partner @ MNIT Jaipur</p>
-            <a href="https://wa.me/919251028070" target="_blank" class="cta-button">Order on WhatsApp</a>
+        <div class="card">
+          <div class="icon"><i class="fas fa-image"></i></div>
+          <h3>A4 Posters</h3>
+          <p>Custom prints and trending anime art to decorate your hostel room.</p>
         </div>
-    </header>
-
-    <main>
-        <section id="about">
-            <div class="container">
-                <h2 class="section-title">Your Lifesaver for Deadlines</h2>
-                <p>
-                    Tired of printer shops being closed when you need them most? Print$Buddy is a student-run initiative right here in the MNIT Hostels, created to solve all your late-night printing emergencies. We're fast, reliable, and ready when you are!
-                </p>
-            </div>
-        </section>
-
-        <section id="services" class="section-bg">
-            <div class="container">
-                <h2 class="section-title">What We Offer</h2>
-                <div class="cards">
-                    <div class="card">
-                        <div class="icon"><i class="fas fa-file-alt"></i></div>
-                        <h3>Document Printing</h3>
-                        <p>High-quality printing for your assignments, reports, and notes. Both Black & White and Colour options are available.</p>
-                    </div>
-                    <div class="card">
-                        <div class="icon"><i class="fas fa-image"></i></div>
-                        <h3>A4 Posters</h3>
-                        <p>Decorate your room with custom designs or posters of your favorite trending anime characters. Perfect for personalizing your space!</p>
-                    </div>
-                    <div class="card">
-                        <div class="icon"><i class="fas fa-moon"></i></div>
-                        <h3>Late-Night & Delivery</h3>
-                        <p>We're open late for your convenience. We also offer a special paid delivery service, exclusively for girls' hostels.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="order">
-            <div class="container">
-                <h2 class="section-title">Ready to Order?</h2>
-                <p style="font-size:1.1rem;">
-                    Ordering is simple! Just send your PDF files and requirements to our WhatsApp number.
-                </p>
-                <div class="whatsapp-info">
-                    <i class="fab fa-whatsapp"></i> 9251028070
-                </div>
-                <p>
-                    <a href="https://wa.me/919251028070" target="_blank" class="cta-button">Chat With Us</a>
-                </p>
-                 <p>
-                    <strong>Pickup for Boys:</strong> H-8 (Hostel 8) <br>
-                    <strong>Delivery for Girls:</strong> Available to your hostel.
-                </p>
-            </div>
-        </section>
-
-        <section id="feedback" class="section-bg">
-            <div class="container" style="text-align: center;">
-                <h2 class="section-title">Share Your Feedback</h2>
-                <p style="font-size:1.1rem;">
-                    Your opinion helps us improve! Let us know how we did by filling out our quick feedback form.
-                </p>
-                <p>
-                    <a href="#" target="_blank" class="cta-button" style="background-color: #3b5998;">
-                        <i class="fas fa-star"></i> Give Feedback
-                    </a>
-                </p>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Print$Buddy @ MNIT Jaipur. All Rights Reserved.</p>
+        <div class="card">
+          <div class="icon"><i class="fas fa-moon"></i></div>
+          <h3>Late-Night + Delivery</h3>
+          <p>Open late hours. Paid delivery available to girls' hostels on campus.</p>
         </div>
-    </footer>
+      </div>
+    </section>
+
+    <section id="order" class="container">
+      <h2 class="section-title">Place Your Order</h2>
+      <p style="text-align:center;">Send your PDFs and details via WhatsApp below or fill the Google Form.</p>
+      <div class="whatsapp-info"><i class="fab fa-whatsapp"></i> 9251028070</div>
+      <p style="text-align:center;">
+        <a href="https://wa.me/919251028070" class="cta-button">Chat on WhatsApp</a>
+      </p>
+
+      <p style="margin-top: 2rem;"><strong>📍 Pickup:</strong> H-8 Hostel (Boys) <br><strong>🚚 Delivery:</strong> Girls' Hostels</p>
+
+      <!-- Embedded Google Form -->
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdLUfYETBYOjj3bQ7cZk-KV4n7tKVP8F7gkM_0Rbhbl5cu1qA/viewform?embedded=true">Loading…</iframe>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Print$Buddy @ MNIT Jaipur. All rights reserved.
+  </footer>
 
 </body>
 </html>
