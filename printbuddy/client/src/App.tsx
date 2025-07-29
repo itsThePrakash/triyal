@@ -9,7 +9,7 @@ const App: React.FC = () => {
   const [customerPhone, setCustomerPhone] = useState('');
   const [feedback, setFeedback] = useState('');
 
-  const serverUrl = 'https://printsbuddy-server.vercel.app/api';
+  const serverUrl = 'https://printsbuddy-server1.vercel.app/api';
 
   const handleOrderSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,6 +36,7 @@ const App: React.FC = () => {
 
   const handleFeedbackSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!feedback.trim()) return alert('Please enter feedback.');
     try {
       await axios.post(`${serverUrl}/feedback`, { feedback });
       alert('Feedback submitted!');
@@ -46,109 +47,121 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <nav className="bg-blue-600 text-white p-4">
-        <div className="container mx-auto flex justify-between">
-          <h1 className="text-2xl font-bold">Print$buddy</h1>
-          <ul className="flex space-x-4">
-            <li><a href="#home" className="hover:underline">Home</a></li>
-            <li><a href="#order" className="hover:underline">Order</a></li>
-            <li><a href="#feedback" className="hover:underline">Feedback</a></li>
-            <li><a href="#about" className="hover:underline">About</a></li>
+    <div className="min-h-screen bg-gray-900 text-gray-100">
+      {/* Navigation */}
+      <nav className="bg-gray-800 shadow-lg sticky top-0 z-50">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-blue-400">Print$buddy</h1>
+          <ul className="flex space-x-6">
+            <li><a href="#home" className="hover:text-blue-400 transition duration-300">Home</a></li>
+            <li><a href="#order" className="hover:text-blue-400 transition duration-300">Order</a></li>
+            <li><a href="#feedback" className="hover:text-blue-400 transition duration-300">Feedback</a></li>
+            <li><a href="#about" className="hover:text-blue-400 transition duration-300">About</a></li>
           </ul>
         </div>
       </nav>
 
-      <section id="home" className="container mx-auto p-8 text-center">
-        <h2 className="text-3xl font-bold mb-4">Welcome to Print$buddy</h2>
-        <p className="text-lg mb-4">Late-night printing at MNIT Jaipur hostel (until 2 AM)!</p>
-        <p className="text-lg mb-4">B&W: ₹4 | Color: ₹14 | Delivery for girls: ₹25</p>
+      {/* Home Section */}
+      <section id="home" className="container mx-auto px-4 py-20 text-center">
+        <h2 className="text-4xl font-extrabold mb-6 animate-fade-in">Welcome to Print$buddy</h2>
+        <p className="text-xl mb-4">Late-night printing services at MNIT Jaipur, available until 2 AM!</p>
+        <p className="text-lg mb-8">Black & White: ₹4 | Color: ₹14 | Girls’ Delivery: ₹25</p>
         <a
           href="https://wa.me/919251028070?text=Hi,%20I%27d%20like%20to%20place%20an%20order%20for%20printing."
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          className="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300 transform hover:scale-105"
         >
           Order via WhatsApp
         </a>
       </section>
 
-      <section id="order" className="container mx-auto p-8">
-        <h2 className="text-2xl font-bold mb-4">Place Your Order</h2>
-        <form onSubmit={handleOrderSubmit} className="max-w-md mx-auto">
-          <div className="mb-4">
-            <label className="block mb-2">Upload File</label>
+      {/* Order Section */}
+      <section id="order" className="container mx-auto px-4 py-16 bg-gray-800 rounded-lg shadow-xl">
+        <h2 className="text-3xl font-bold mb-8 text-center">Place Your Order</h2>
+        <form onSubmit={handleOrderSubmit} className="max-w-lg mx-auto space-y-6">
+          <div>
+            <label className="block mb-2 text-sm font-medium">Upload File</label>
             <input
               type="file"
               onChange={(e) => setFile(e.target.files?.[0] || null)}
-              className="w-full p-2 border rounded"
+              className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-blue-500 file:text-white hover:file:bg-blue-600"
               required
             />
           </div>
-          <div className="mb-4">
-            <label className="block mb-2">Print Type</label>
+          <div>
+            <label className="block mb-2 text-sm font-medium">Print Type</label>
             <select
               value={orderType}
               onChange={(e) => setOrderType(e.target.value as 'bw' | 'color')}
-              className="w-full p-2 border rounded"
+              className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white"
             >
               <option value="bw">Black & White (₹4)</option>
               <option value="color">Color (₹14)</option>
             </select>
           </div>
-          <div className="mb-4">
-            <label className="block mb-2">Phone Number (+91XXXXXXXXXX)</label>
+          <div>
+            <label className="block mb-2 text-sm font-medium">Phone Number (+91XXXXXXXXXX)</label>
             <input
               type="text"
               value={customerPhone}
               onChange={(e) => setCustomerPhone(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400"
               placeholder="+919251028070"
               required
             />
           </div>
-          <div className="mb-4">
+          <div>
             <label className="flex items-center">
               <input
                 type="checkbox"
                 checked={isFemale}
                 onChange={(e) => setIsFemale(e.target.checked)}
-                className="mr-2"
+                className="mr-2 h-4 w-4 text-blue-500 bg-gray-700 border-gray-600 rounded"
               />
-              Delivery for girls (₹25 extra)
+              <span className="text-sm">Delivery for girls (₹25 extra)</span>
             </label>
           </div>
-          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-300 transform hover:scale-105"
+          >
             Place Order
           </button>
         </form>
       </section>
 
-      <section id="feedback" className="container mx-auto p-8">
-        <h2 className="text-2xl font-bold mb-4">Feedback</h2>
-        <form onSubmit={handleFeedbackSubmit} className="max-w-md mx-auto">
+      {/* Feedback Section */}
+      <section id="feedback" className="container mx-auto px-4 py-16">
+        <h2 className="text-3xl font-bold mb-8 text-center">Share Your Feedback</h2>
+        <form onSubmit={handleFeedbackSubmit} className="max-w-lg mx-auto space-y-6">
           <textarea
             value={feedback}
             onChange={(e) => setFeedback(e.target.value)}
-            className="w-full p-2 border rounded mb-4"
+            className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 h-32 resize-y"
             placeholder="Your feedback..."
             required
           ></textarea>
-          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-300 transform hover:scale-105"
+          >
             Submit Feedback
           </button>
         </form>
       </section>
 
-      <section id="about" className="container mx-auto p-8 text-center">
-        <h2 className="text-2xl font-bold mb-4">About Print$buddy</h2>
+      {/* About Section */}
+      <section id="about" className="container mx-auto px-4 py-16 text-center bg-gray-800 rounded-lg shadow-xl">
+        <h2 className="text-3xl font-bold mb-6">About Print$buddy</h2>
         <p className="text-lg mb-4">
-          Founded by Prakash (MNIT CSE 4th Year), Manish Meena (MNIT CSE 4th Year), and co-founder Tanik Saini (MNIT Meta 4th Year).
+          Print$buddy provides affordable, late-night printing services for MNIT students, with convenient delivery to girls' hostel gates.
         </p>
         <p className="text-lg">
-          We provide affordable, late-night printing services for MNIT students, with delivery to girls' hostel gates. Our vision is to grow Print$buddy into a leading printing company.
+          Our vision is to become a leading printing service, ensuring quality and reliability until 2 AM.
         </p>
       </section>
 
-      <footer className="bg-blue-600 text-white p-4 text-center">
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-400 p-6 text-center">
         <p>Contact us: +91 9251028070 | Print$buddy © 2025</p>
       </footer>
     </div>
