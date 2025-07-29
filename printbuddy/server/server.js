@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
 const cors = require('cors');
+const serverless = require('serverless-http');
+
 const app = express();
 
 app.use(cors());
@@ -9,7 +11,9 @@ app.use(express.json());
 app.use(multer().single('file'));
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 // Schemas
 const orderSchema = new mongoose.Schema({
@@ -29,14 +33,14 @@ const Order = mongoose.model('Order', orderSchema);
 const Feedback = mongoose.model('Feedback', feedbackSchema);
 
 // Order Endpoint
-app.post('/api/orders', async (req, res) => {
+app.post('/orders', async (req, res) => {
   const { orderType, isFemale, customerPhone } = req.body;
   const amount = orderType === 'bw' ? 4 : 14;
   const totalAmount = isFemale ? amount + 25 : amount;
 
   try {
     await Order.create({
-      file: req.file?.path,
+      file: req.file?.path || 'no-file',
       orderType,
       isFemale,
       amount: totalAmount,
@@ -50,7 +54,7 @@ app.post('/api/orders', async (req, res) => {
 });
 
 // Feedback Endpoint
-app.post('/api/feedback', async (req, res) => {
+app.post('/feedback', async (req, res) => {
   try {
     await Feedback.create({ feedback: req.body.feedback });
     res.json({ status: 'success' });
@@ -60,4 +64,4 @@ app.post('/api/feedback', async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log('Server running on port 3000'));
+module.exports.handler = serverless(app);
