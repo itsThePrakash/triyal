@@ -9,6 +9,8 @@ const App: React.FC = () => {
   const [customerPhone, setCustomerPhone] = useState('');
   const [feedback, setFeedback] = useState('');
 
+  const serverUrl = 'https://printsbuddy-server.vercel.app/api';
+
   const handleOrderSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!file) return alert('Please upload a file.');
@@ -21,7 +23,7 @@ const App: React.FC = () => {
     formData.append('customerPhone', customerPhone);
 
     try {
-      await axios.post('http://localhost:3000/api/orders', formData);
+      await axios.post(`${serverUrl}/orders`, formData);
       alert('Order placed successfully! We will contact you for confirmation.');
       setFile(null);
       setOrderType('bw');
@@ -35,7 +37,7 @@ const App: React.FC = () => {
   const handleFeedbackSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3000/api/feedback', { feedback });
+      await axios.post(`${serverUrl}/feedback`, { feedback });
       alert('Feedback submitted!');
       setFeedback('');
     } catch (error) {
