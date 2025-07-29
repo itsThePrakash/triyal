@@ -2,7 +2,7 @@
   "version": 2,
   "functions": {
     "api/index.js": {
-      "runtime": "nodejs18@0.8.8",
+      "runtime": "node@18.x",
       "memory": 128,
       "maxDuration": 10
     }
