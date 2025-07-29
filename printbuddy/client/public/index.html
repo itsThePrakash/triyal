@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Print$buddy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-100">
+  <!-- Navigation -->
+  <nav class="bg-blue-600 text-white p-4">
+    <div class="container mx-auto flex justify-between">
+      <h1 class="text-2xl font-bold">Print$buddy</h1>
+      <ul class="flex space-x-4">
+        <li><a href="#home" class="hover:underline">Home</a></li>
+        <li><a href="#order" class="hover:underline">Order</a></li>
+        <li><a href="#feedback" class="hover:underline">Feedback</a></li>
+        <li><a href="#about" class="hover:underline">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="container mx-auto p-8 text-center">
+    <h2 class="text-3xl font-bold mb-4">Welcome to Print$buddy</h2>
+    <p class="text-lg mb-4">Late-night printing at MNIT Jaipur hostel (until 2 AM)!</p>
+    <p class="text-lg mb-4">B&W: ₹4 | Color: ₹14 | Delivery for girls: ₹25</p>
+    <a
+      href="https://wa.me/919251028070?text=Hi,%20I%27d%20like%20to%20place%20an%20order%20for%20printing."
+      class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+    >
+      Order via WhatsApp
+    </a>
+  </section>
+
+  <!-- Order Section -->
+  <section id="order" class="container mx-auto p-8">
+    <h2 class="text-2xl font-bold mb-4">Place Your Order</h2>
+    <form id="orderForm" class="max-w-md mx-auto">
+      <div class="mb-4">
+        <label class="block mb-2">Upload File</label>
+        <input
+          type="file"
+          id="fileInput"
+          class="w-full p-2 border rounded"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block mb-2">Print Type</label>
+        <select id="orderType" class="w-full p-2 border rounded">
+          <option value="bw">Black & White (₹4)</option>
+          <option value="color">Color (₹14)</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block mb-2">Phone Number (+91XXXXXXXXXX)</label>
+        <input
+          type="text"
+          id="customerPhone"
+          class="w-full p-2 border rounded"
+          placeholder="+919251028070"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label class="flex items-center">
+          <input type="checkbox" id="isFemale" class="mr-2" />
+          Delivery for girls (₹25 extra)
+        </label>
+      </div>
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        Place Order
+      </button>
+    </form>
+  </section>
+
+  <!-- Feedback Section -->
+  <section id="feedback" class="container mx-auto p-8">
+    <h2 class="text-2xl font-bold mb-4">Feedback</h2>
+    <form id="feedbackForm" class="max-w-md mx-auto">
+      <textarea
+        id="feedbackInput"
+        class="w-full p-2 border rounded mb-4"
+        placeholder="Your feedback..."
+        required
+      ></textarea>
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        Submit Feedback
+      </button>
+    </form>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="container mx-auto p-8 text-center">
+    <h2 class="text-2xl font-bold mb-4">About Print$buddy</h2>
+    <p class="text-lg mb-4">
+      Founded by Prakash (MNIT CSE 4th Year), Manish Meena (MNIT CSE 4th Year), and co-founder Tanik Saini (MNIT Meta 4th Year).
+    </p>
+    <p class="text-lg">
+      We provide affordable, late-night printing services for MNIT students, with delivery to girls' hostel gates. Our vision is to grow Print$buddy into a leading printing company.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-600 text-white p-4 text-center">
+    <p>Contact us: +91 9251028070 | Print$buddy © 2025</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Order Form Handling
+    document.getElementById('orderForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      
+      const fileInput = document.getElementById('fileInput').files[0];
+      const orderType = document.getElementById('orderType').value;
+      const customerPhone = document.getElementById('customerPhone').value;
+      const isFemale = document.getElementById('isFemale').checked;
+
+      // Validate phone number
+      if (!customerPhone.match(/^\+91[0-9]{10}$/)) {
+        alert('Please enter a valid phone number (+91XXXXXXXXXX).');
+        return;
+      }
+
+      // Validate file
+      if (!fileInput) {
+        alert('Please upload a file.');
+        return;
+      }
+
+      // Calculate amount
+      const baseAmount = orderType === 'bw' ? 4 : 14;
+      const totalAmount = isFemale ? baseAmount + 25 : baseAmount;
+
+      // Prepare order details
+      const orderDetails = {
+        fileName: fileInput.name,
+        orderType: orderType === 'bw' ? 'Black & White' : 'Color',
+        isFemale: isFemale,
+        amount: totalAmount,
+        customerPhone: customerPhone,
+        createdAt: new Date().toISOString()
+      };
+
+      // Display order confirmation
+      alert(
+        `Order placed successfully!\n\n` +
+        `File: ${orderDetails.fileName}\n` +
+        `Print Type: ${orderDetails.orderType}\n` +
+        `Amount: ₹${orderDetails.amount}\n` +
+        `Phone: ${orderDetails.customerPhone}\n` +
+        `Please contact +919251028070 to confirm your order.`
+      );
+
+      // Log to console for admin
+      console.log('New Order:', orderDetails);
+
+      // Reset form
+      document.getElementById('orderForm').reset();
+    });
+
+    // Feedback Form Handling
+    document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      
+      const feedback = document.getElementById('feedbackInput').value;
+
+      // Validate feedback
+      if (!feedback.trim()) {
+        alert('Please enter feedback.');
+        return;
+      }
+
+      // Display feedback confirmation
+      alert('Feedback submitted successfully!\n\n' + `Feedback: ${feedback}`);
+      
+      // Log to console for admin
+      console.log('New Feedback:', { feedback, createdAt: new Date().toISOString() });
+
+      // Reset form
+      document.getElementById('feedbackForm').reset();
+    });
+  </script>
+</body>
+</html>
