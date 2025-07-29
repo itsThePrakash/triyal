@@ -3,12 +3,18 @@
   "builds": [
     {
       "src": "api/index.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": { "maxLambdaSize": "15mb" }
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "status": 404,
       "dest": "/api/index.js"
     }
   ]
