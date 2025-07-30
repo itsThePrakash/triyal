@@ -1,98 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Print$Buddy - MNIT Jaipur</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>PrintBuddy</title>
 </head>
-<body class="bg-gray-900 text-white font-sans">
-  <header class="bg-cyan-600 p-4 text-center text-yellow-300 font-bold text-2xl">
-    🖨️ Print$Buddy @ MNIT Jaipur
-  </header>
+<body>
+  <h1>Welcome to PrintBuddy</h1>
 
-  <main class="p-6 max-w-2xl mx-auto">
-    <section class="mb-10">
-      <h2 class="text-xl font-semibold text-yellow-300 mb-4">Place an Order</h2>
-      <form id="order-form" class="space-y-4" enctype="multipart/form-data">
-        <input type="text" name="name" placeholder="Your Name" required class="w-full p-2 rounded bg-gray-800 border border-gray-700"/>
-        <input type="email" name="email" placeholder="Your Email" required class="w-full p-2 rounded bg-gray-800 border border-gray-700"/>
-        <select name="service" required class="w-full p-2 rounded bg-gray-800 border border-gray-700">
-          <option value="">Select Service</option>
-          <option value="document">Document Printing</option>
-          <option value="poster">Poster Printing</option>
-        </select>
-        <input type="file" name="file" accept=".pdf,.docx,.jpg,.png" required class="w-full"/>
-        <textarea name="details" rows="4" placeholder="Order Details (e.g., color/B&W, quantity)" required class="w-full p-2 rounded bg-gray-800 border border-gray-700"></textarea>
-        <button type="submit" class="bg-yellow-400 text-blue-900 px-4 py-2 rounded font-semibold">Submit Order</button>
-      </form>
-      <p id="order-response" class="mt-4 text-green-400 hidden"></p>
-    </section>
+  <h2>🖨️ Place a Print Order</h2>
+  <form action="/api/orders" method="POST" enctype="multipart/form-data">
+    <label>Name: <input type="text" name="name" required></label><br><br>
+    <label>Email: <input type="email" name="email" required></label><br><br>
+    <label>Service: <input type="text" name="service" required></label><br><br>
+    <label>Details: <textarea name="details" required></textarea></label><br><br>
+    <label>Upload File: <input type="file" name="file" required></label><br><br>
+    <button type="submit">Submit Order</button>
+  </form>
 
-    <section>
-      <h2 class="text-xl font-semibold text-yellow-300 mb-4">Give Feedback</h2>
-      <form id="feedback-form" class="space-y-4">
-        <input type="text" name="name" placeholder="Your Name (optional)" class="w-full p-2 rounded bg-gray-800 border border-gray-700"/>
-        <input type="email" name="email" placeholder="Your Email (optional)" class="w-full p-2 rounded bg-gray-800 border border-gray-700"/>
-        <textarea name="feedback" rows="4" placeholder="Your Feedback" required class="w-full p-2 rounded bg-gray-800 border border-gray-700"></textarea>
-        <select name="rating" required class="w-full p-2 rounded bg-gray-800 border border-gray-700">
-          <option value="">Rate Us (1–5)</option>
-          <option value="1">★☆☆☆☆</option>
-          <option value="2">★★☆☆☆</option>
-          <option value="3">★★★☆☆</option>
-          <option value="4">★★★★☆</option>
-          <option value="5">★★★★★</option>
-        </select>
-        <button type="submit" class="bg-yellow-400 text-blue-900 px-4 py-2 rounded font-semibold">Submit Feedback</button>
-      </form>
-      <p id="feedback-response" class="mt-4 text-green-400 hidden"></p>
-    </section>
-  </main>
+  <hr>
 
-  <script>
-    document.getElementById('order-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const formData = new FormData(form);
+  <h2>💬 Submit Feedback</h2>
+  <form action="/api/feedback" method="POST">
+    <label>Name: <input type="text" name="name" required></label><br><br>
+    <label>Email: <input type="email" name="email" required></label><br><br>
+    <label>Rating (1-5): <input type="number" name="rating" min="1" max="5" required></label><br><br>
+    <label>Feedback: <textarea name="feedback" required></textarea></label><br><br>
+    <button type="submit">Send Feedback</button>
+  </form>
 
-      try {
-        const res = await fetch('/api/orders', {
-          method: 'POST',
-          body: formData
-        });
-        const result = await res.json();
-        document.getElementById('order-response').textContent = result.message;
-        document.getElementById('order-response').classList.remove('hidden');
-        form.reset();
-      } catch (err) {
-        alert('Error submitting order.');
-      }
-    });
-
-    document.getElementById('feedback-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const data = {
-        name: form.name.value,
-        email: form.email.value,
-        feedback: form.feedback.value,
-        rating: form.rating.value
-      };
-
-      try {
-        const res = await fetch('/api/feedback', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        const result = await res.json();
-        document.getElementById('feedback-response').textContent = result.message;
-        document.getElementById('feedback-response').classList.remove('hidden');
-        form.reset();
-      } catch (err) {
-        alert('Error submitting feedback.');
-      }
-    });
-  </script>
 </body>
 </html>
