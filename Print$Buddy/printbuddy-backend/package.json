@@ -1,4 +1,4 @@
-```json
+json
 {
     "name": "printbuddy-backend",
     "version": "1.0.0",
@@ -15,4 +15,3 @@
         "multer": "^1.4.5-lts.1"
     }
 }
-```
