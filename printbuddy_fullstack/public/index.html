@@ -1,32 +1,1068 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>PrintBuddy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="Print$Buddy - Student-run printing service at MNIT Jaipur, offering late-night printing and campus delivery.">
+    <title>Print$Buddy - Your Ultimate Printing Partner @ MNIT Jaipur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+        /* Tailwind CSS CDN */
+        @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+
+        /* Custom CSS for Dark Mode and Mobile */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1F2937;
+            color: #F3F4F6 !important;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Fallback for no JavaScript */
+        .no-js * {
+            opacity: 1 !important;
+            transform: none !important;
+            display: block !important;
+        }
+
+        header {
+            background: linear-gradient(90deg, #06B6D4, #1E3A8A);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FBBF24 !important;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            flex-direction: row;
+        }
+
+        nav a {
+            color: #F3F4F6 !important;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #FBBF24 !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #F3F4F6;
+            margin: 2px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-active {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background: #1E3A8A;
+            padding: 1rem;
+        }
+
+        #hero {
+            background: url('https://source.unsplash.com/random/1920x1080?printing') no-repeat center center/cover;
+            color: #F3F4F6 !important;
+            text-align: center;
+            padding: 4rem 1rem;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(6, 182, 212, 0.8), rgba(30, 58, 138, 0.8));
+            z-index: 1;
+        }
+
+        #hero > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        #hero h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        #hero p {
+            font-size: 1rem;
+            max-width: 90%;
+            margin-bottom: 1.5rem;
+        }
+
+        .whatsapp-btn {
+            background-color: #FBBF24;
+            color: #1E3A8A !important;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #EC4899;
+            transform: scale(1.05);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background-color: #25D366;
+            color: white;
+            padding: 0.8rem;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        section {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FBBF24 !important;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .impact-card {
+            background: #374151;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: #F3F4F6 !important;
+            min-height: 150px;
+        }
+
+        .impact-card .counter {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #06B6D4 !important;
+        }
+
+        .service-card {
+            background: #374151;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            color: #F3F4F6 !important;
+            min-height: 200px;
+            position: relative;
+        }
+
+        .service-card .card-inner {
+            position: relative;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            min-height: 180px;
+        }
+
+        .service-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 1rem;
+            color: #F3F4F6 !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background: #06B6D4;
+            border-radius: 10px;
+        }
+
+        .pricing-table {
+            background: #374151;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            color: #F3F4F6 !important;
+        }
+
+        .pricing-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .pricing-table th, .pricing-table td {
+            padding: 0.8rem;
+            border: 1px solid #4B5563;
+            text-align: left;
+            color: #F3F4F6 !important;
+        }
+
+        .pricing-table th {
+            background: #06B6D4;
+            color: #F3F4F6 !important;
+            font-weight: 600;
+        }
+
+        .discount-card {
+            background: #374151;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            color: #F3F4F6 !important;
+            min-height: 150px;
+        }
+
+        .testimonial-slider {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            display: none;
+            text-align: center;
+            padding: 1.5rem;
+            background: #374151;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            color: #F3F4F6 !important;
+            opacity: 0;
+            min-height: 150px;
+        }
+
+        .testimonial.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .faq-item {
+            background: #374151;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            color: #F3F4F6 !important;
+        }
+
+        .faq-question {
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            background: #06B6D4;
+            color: #F3F4F6 !important;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 1rem;
+            display: none;
+            color: #F3F4F6 !important;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .team-card {
+            background: #374151;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: #F3F4F6 !important;
+            min-height: 200px;
+        }
+
+        .team-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 2px solid #FBBF24;
+            loading: lazy;
+        }
+
+        .order-form, .feedback-form {
+            background: #374151;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            max-width: 100%;
+            margin: 0 auto;
+            color: #F3F4F6 !important;
+        }
+
+        .order-form input,
+        .order-form textarea,
+        .order-form select,
+        .feedback-form input,
+        .feedback-form textarea,
+        .feedback-form select {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #4B5563;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            background: #1F2937;
+            color: #F3F4F6 !important;
+            min-height: 48px;
+        }
+
+        .order-form button,
+        .feedback-form button {
+            background-color: #FBBF24;
+            color: #1E3A8A !important;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            min-height: 48px;
+        }
+
+        .order-form button:hover,
+        .feedback-form button:hover {
+            background-color: #EC4899;
+        }
+
+        footer {
+            background: linear-gradient(90deg, #1E3A8A, #06B6D4);
+            color: #F3F4F6 !important;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: #FBBF24 !important;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #EC4899 !important;
+        }
+
+        .loading-spinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 4px solid #FBBF24;
+            border-top: 4px solid #06B6D4;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            z-index: 2000;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            #hero h1 {
+                font-size: 2rem;
+            }
+
+            #hero p {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .impact-card .counter {
+                font-size: 1.5rem;
+            }
+
+            .pricing-table table {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .pricing-table thead, .pricing-table tbody {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .pricing-table tr {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 1rem;
+            }
+
+            .pricing-table th, .pricing-table td {
+                display: block;
+                text-align: center;
+            }
+
+            .service-card, .team-card {
+                min-height: 220px;
+            }
+
+            .service-card .card-inner {
+                min-height: 200px;
+            }
+        }
+    </style>
 </head>
-<body>
-  <h1>Welcome to PrintBuddy</h1>
+<body class="no-js">
+    <div class="loading-spinner" id="spinner"></div>
+    <header>
+        <nav>
+            <div class="logo">Print$Buddy 🖨️</div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#discounts">Discounts</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#order">Order</a></li>
+                <li><a href="#feedback">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <h2>🖨️ Place a Print Order</h2>
-  <form action="/api/orders" method="POST" enctype="multipart/form-data">
-    <label>Name: <input type="text" name="name" required></label><br><br>
-    <label>Email: <input type="email" name="email" required></label><br><br>
-    <label>Service: <input type="text" name="service" required></label><br><br>
-    <label>Details: <textarea name="details" required></textarea></label><br><br>
-    <label>Upload File: <input type="file" name="file" required></label><br><br>
-    <button type="submit">Submit Order</button>
-  </form>
+    <main>
+        <section id="hero">
+            <h1>Your Ultimate Printing Partner @ MNIT Jaipur</h1>
+            <p>Struggling with last-minute assignments or craving a custom poster for your hostel room? Print$Buddy is a student-run printing service at MNIT Jaipur, open late-night to save your deadlines!</p>
+            <a href="https://wa.me/919251028070" class="whatsapp-btn">Order Now on WhatsApp</a>
+        </section>
 
-  <hr>
+        <section id="about">
+            <h2>About Print$Buddy</h2>
+            <div class="grid grid-cols-1 gap-6">
+                <div class="text-lg">
+                    <h3 class="text-xl font-semibold mb-3 text-cyan-500">Our Mission</h3>
+                    <p>No student should stress over printing. Print$Buddy provides fast, reliable, and affordable printing solutions right from MNIT Jaipur hostels, ensuring you meet every deadline with ease.</p>
+                </div>
+                <div class="text-lg">
+                    <h3 class="text-xl font-semibold mb-3 text-cyan-500">Our Story</h3>
+                    <p>Founded in 2025 by MNIT students, Print$Buddy started as a late-night printing solution for our peers. Today, we’re proud to serve the entire MNIT community with quality prints and delivery.</p>
+                </div>
+                <div class="text-lg">
+                    <h3 class="text-xl font-semibold mb-3 text-cyan-500">Why Choose Us?</h3>
+                    <p>We’re students, just like you, understanding the chaos of deadlines. With late-night hours, campus delivery, and a passion for quality, Print$Buddy is your trusted printing partner.</p>
+                </div>
+                <div class="text-lg">
+                    <h3 class="text-xl font-semibold mb-3 text-cyan-500">Community Commitment</h3>
+                    <p>We’re dedicated to supporting MNIT’s vibrant student community. From sponsoring club events to offering student discounts, Print$Buddy is more than just printing—it’s about building connections.</p>
+                </div>
+            </div>
+        </section>
 
-  <h2>💬 Submit Feedback</h2>
-  <form action="/api/feedback" method="POST">
-    <label>Name: <input type="text" name="name" required></label><br><br>
-    <label>Email: <input type="email" name="email" required></label><br><br>
-    <label>Rating (1-5): <input type="number" name="rating" min="1" max="5" required></label><br><br>
-    <label>Feedback: <textarea name="feedback" required></textarea></label><br><br>
-    <button type="submit">Send Feedback</button>
-  </form>
+        <section id="impact">
+            <h2>Our Impact</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="impact-card">
+                    <div class="counter" data-target="5000">0</div>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="impact-card">
+                    <div class="counter" data-target="1200">0</div>
+                    <p>Monthly Users</p>
+                </div>
+                <div class="impact-card">
+                    <div class="counter" data-target="10000">0</div>
+                    <p>Pages Printed</p>
+                </div>
+                <div class="impact-card">
+                    <div class="counter" data-target="500">0</div>
+                    <p>Posters Designed</p>
+                </div>
+            </div>
+        </section>
 
+        <section id="services">
+            <h2>Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="service-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3 class="text-lg font-semibold text-cyan-500">Document Printing</h3>
+                            <p>High-quality B&W and color prints for assignments, reports, and notes.</p>
+                        </div>
+                        <div class="card-back">
+                            <p>Starting at ₹4/page for B&W, ₹14/page for color. Supports PDF, DOCX, and more.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3 class="text-lg font-semibold text-cyan-500">A4 Posters</h3>
+                            <p>Custom designs and trending anime art for your hostel room.</p>
+                        </div>
+                        <div class="card-back">
+                            <p>Starting at ₹40/poster. Upload your design or choose from our anime collection!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3 class="text-lg font-semibold text-cyan-500">Late-Night Printing</h3>
+                            <p>Open from 9 PM to 2 AM to match your schedule.</p>
+                        </div>
+                        <div class="card-back">
+                            <p>Order by 2 AM for same-night pickup. Perfect for last-minute submissions!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3 class="text-lg font-semibold text-cyan-500">Bulk Discounts</h3>
+                            <p>Special rates for large orders and group projects.</p>
+                        </div>
+                        <div class="card-back">
+                            <p>10% off for orders over 100 pages. Contact us for custom quotes!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3 class="text-lg font-semibold text-cyan-500">Campus Delivery</h3>
+                            <p>Delivery to girls’ hostels; boys collect free at H-8 Hostel gate.</p>
+                        </div>
+                        <div class="card-back">
+                            <p>₹25/delivery for girls’ hostels. Same-day delivery for orders before 8 PM.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing">
+            <h2>Pricing</h2>
+            <div class="pricing-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Price</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>B&W Printing</td>
+                            <td>₹4/page</td>
+                            <td>High-quality black and white prints, A4 size</td>
+                        </tr>
+                        <tr>
+                            <td>Color Printing</td>
+                            <td>₹14/page</td>
+                            <td>Vibrant color prints, A4 size</td>
+                        </tr>
+                        <tr>
+                            <td>A4 Posters</td>
+                            <td>₹40/poster</td>
+                            <td>Custom or pre-designed posters</td>
+                        </tr>
+                        <tr>
+                            <td>Campus Delivery</td>
+                            <td>₹25/order (girls’ hostels)</td>
+                            <td>Delivery to girls’ hostels; boys collect free at H-8 Hostel gate</td>
+                        </tr>
+                        <tr>
+                            <td>Bulk Discount</td>
+                            <td>10% off</td>
+                            <td>For orders over 100 pages</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="discounts">
+            <h2>Student Discounts</h2>
+            <div class="grid grid-cols-1 gap-6">
+                <div class="discount-card">
+                    <h3 class="text-lg font-semibold text-cyan-500">Bulk Order Discount</h3>
+                    <p>10% off for orders over 100 pages. Perfect for group projects!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <h2>What Students Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial active">
+                    <p class="text-base italic">"Print$Buddy’s late-night printing saved my assignment submission at midnight!"</p>
+                    <p class="font-semibold mt-2">— Aarav Jain, 3rd Year, B.Tech CSE, MNIT Jaipur</p>
+                </div>
+                <div class="testimonial">
+                    <p class="text-base italic">"The anime posters are so vibrant! My hostel room looks amazing now."</p>
+                    <p class="font-semibold mt-2">— Isha Gupta, 2nd Year, B.Tech ECE, MNIT Jaipur</p>
+                </div>
+                <div class="testimonial">
+                    <p class="text-base italic">"Campus delivery to the girls’ hostel is super convenient and fast."</p>
+                    <p class="font-semibold mt-2">— Neha Sharma, 3rd Year, B.Arch, MNIT Jaipur</p>
+                </div>
+                <div class="testimonial">
+                    <p class="text-base italic">"Affordable prints made my project report submission stress-free."</p>
+                    <p class="font-semibold mt-2">— Rohit Verma, 2nd Year, B.Tech ME, MNIT Jaipur</p>
+                </div>
+                <div class="testimonial">
+                    <p class="text-base italic">"Bulk discounts for group projects are a lifesaver for our team!"</p>
+                    <p class="font-semibold mt-2">— Priya Singh, 3rd Year, B.Tech CE, MNIT Jaipur</p>
+                </div>
+                <div class="testimonial">
+                    <p class="text-base italic">"Quick turnaround for color prints, even for last-minute needs."</p>
+                    <p class="font-semibold mt-2">— Karan Patel, 2nd Year, B.Tech EE, MNIT Jaipur</p>
+                </div>
+                <div class="testimonial">
+                    <p class="text-base italic">"The WhatsApp ordering process is so easy and student-friendly."</p>
+                    <p class="font-semibold mt-2">— Ananya Rao, 3rd Year, B.Tech CSE, MNIT Jaipur</p>
+                </div>
+                <div class="testimonial">
+                    <p class="text-base italic">"High-quality prints at affordable prices? Best deal on campus!"</p>
+                    <p class="font-semibold mt-2">— Vikram Meena, 2nd Year, B.Tech ChE, MNIT Jaipur</p>
+                </div>
+                <div class="testimonial">
+                    <p class="text-base italic">"Print$Buddy’s team is super responsive, even at 1 AM."</p>
+                    <p class="font-semibold mt-2">— Sanya Kapoor, 3rd Year, B.Arch, MNIT Jaipur</p>
+                </div>
+                <div class="testimonial">
+                    <p class="text-base italic">"Custom posters for our club event were a hit, thanks to Print$Buddy!"</p>
+                    <p class="font-semibold mt-2">— Arjun Yadav, 2nd Year, B.Tech ME, MNIT Jaipur</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">What file formats do you accept? <span>▼</span></div>
+                <div class="faq-answer">We accept PDF, DOCX, JPEG, and PNG files. Ensure your files are print-ready for best results.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How much is the delivery fee? <span>▼</span></div>
+                <div class="faq-answer">Delivery to girls’ hostels is ₹25 per order. Boys can collect free at H-8 Hostel gate.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What are your operating hours? <span>▼</span></div>
+                <div class="faq-answer">We’re open from 9 PM to 2 AM daily, perfect for late-night printing needs.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I get a bulk discount? <span>▼</span></div>
+                <div class="faq-answer">Yes! Orders over 100 pages get a 10% discount. Contact us for group project rates.</div>
+            </div>
+        </section>
+
+        <section id="team">
+            <h2>Meet Our Team</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="team-card">
+                    <img src="https://source.unsplash.com/random/150x150?person,man,1" alt="Tanik">
+                    <h3 class="text-lg font-semibold text-cyan-500">Tanik</h3>
+                    <p>Operations Lead</p>
+                    <p class="text-gray-400">B.Tech Metallurgical Engineering, 4th Year, oversees printing and operations for top-quality output.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://source.unsplash.com/random/150x150?person,man,2" alt="Prakash">
+                    <h3 class="text-lg font-semibold text-cyan-500">Prakash</h3>
+                    <p>Design & Marketing Lead</p>
+                    <p class="text-gray-400">B.Tech CSE, 4th Year, crafts stunning poster designs and drives promotions.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://source.unsplash.com/random/150x150?person,man,3" alt="Manish">
+                    <h3 class="text-lg font-semibold text-cyan-500">Manish</h3>
+                    <p>Logistics & Customer Support Lead</p>
+                    <p class="text-gray-400">B.Tech CSE, 4th Year, manages deliveries and WhatsApp support.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="order">
+            <h2>Place Your Order</h2>
+            <p class="text-center mb-4 text-base">Send your files via WhatsApp or use the form below for a quick order.</p>
+            <div class="order-form">
+                <input type="text" placeholder="Your Name" id="order-name" required>
+                <input type="email" placeholder="Your Email" id="order-email" required>
+                <select id="order-service" required>
+                    <option value="" disabled selected>Select Service</option>
+                    <option value="document">Document Printing</option>
+                    <option value="poster">A4 Poster</option>
+                </select>
+                <input type="file" accept=".pdf,.docx,.jpg,.png" id="order-file" required>
+                <textarea placeholder="Order Details (e.g., quantity, color/B&W, delivery)" rows="5" id="order-details" required></textarea>
+                <button onclick="submitOrder()">Submit Order</button>
+            </div>
+            <div class="text-center mt-4">
+                <a href="https://wa.me/919251028070" class="whatsapp-btn">Chat on WhatsApp: 9251028070</a>
+            </div>
+        </section>
+
+        <section id="feedback">
+            <h2>We Value Your Feedback</h2>
+            <p class="text-center mb-4 text-base">Help us improve! Share your experience with Print$Buddy using the form below.</p>
+            <div class="feedback-form">
+                <input type="text" placeholder="Your Name (Optional)" id="feedback-name">
+                <input type="email" placeholder="Your Email (Optional)" id="feedback-email">
+                <textarea placeholder="Your Feedback" rows="5" id="feedback-text" required></textarea>
+                <select id="feedback-rating" required>
+                    <option value="" disabled selected>Select Rating (1–5)</option>
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+                <button onclick="submitFeedback()">Submit Feedback</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>📍 Pickup: H-8 Hostel Gate (Boys), MNIT Jaipur</p>
+        <p>🚚 Delivery: Girls’ Hostels (₹25/order)</p>
+        <p><a href="https://wa.me/919251028070">WhatsApp: 9251028070</a> | <a href="mailto:support@printbuddy.in">support@printbuddy.in</a></p>
+        <p><a href="https://maps.google.com">Find us on Google Maps</a></p>
+        <p>&copy; 2025 Print$Buddy. All rights reserved.</p>
+    </footer>
+
+    <a href="https://wa.me/919251028070" class="whatsapp-float">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.76.36 3.45 1.03 5.01L2 22l5.22-1.36c1.48.57 3.12.91 4.82.91 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm3.67 15.69c-.31.88-.89 1.59-1.74 1.92-.84.33-1.95.26-3.12-.22-1.34-.55-2.47-1.47-3.47-2.59-1.01-1.12-1.97-2.4-2.34-3.87-.37-1.47.08-2.27.88-3.06.17-.17.34-.25.57-.25.14 0 .28.01.41.04.57.14.96.69 1.08 1.25.15.69.37 1.37.55 2.05.08.31.03.65-.14.94-.17.29-.37.52-.61.69-.24.17-.49.29-.45.69.04.4.42.92.87 1.37.45.45.98.83 1.38.87.39.04.52-.2.69-.44.17-.24.41-.49.69-.66.29-.17.63-.22.94-.14.68.18 1.36.4 2.05.55.56.12 1.11.24 1.25 1.08.14.57.05 1.18-.22 1.73z"/>
+        </svg>
+    </a>
+
+    <script>
+        // Remove no-js class and show content
+        document.body.classList.remove('no-js');
+        const spinner = document.getElementById('spinner');
+        spinner.style.display = 'block';
+        window.addEventListener('load', () => {
+            spinner.style.display = 'none';
+        });
+
+        // Hamburger Menu
+        const hamburger = document.querySelector('.hamburger');
+        const navUl = document.querySelector('nav ul');
+        hamburger.addEventListener('click', () => {
+            navUl.classList.toggle('nav-active');
+            hamburger.querySelectorAll('span').forEach((span, i) => {
+                if (navUl.classList.contains('nav-active')) {
+                    span.style.transform = i === 0 ? 'rotate(45deg) translate(5px, 5px)' : i === 1 ? 'opacity(0)' : 'rotate(-45deg) translate(5px, -5px)';
+                } else {
+                    span.style.transform = 'none';
+                    span.style.opacity = '1';
+                }
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                if (window.innerWidth < 768) {
+                    navUl.classList.remove('nav-active');
+                    hamburger.querySelectorAll('span').forEach(span => {
+                        span.style.transform = 'none';
+                        span.style.opacity = '1';
+                    });
+                }
+            });
+        });
+
+        // GSAP Animations (simplified for mobile)
+        gsap.from('#hero h1', { opacity: 0, y: 20, duration: 0.6 });
+        gsap.from('#hero p', { opacity: 0, y: 20, duration: 0.6, delay: 0.1 });
+        gsap.from('.whatsapp-btn', { opacity: 0, y: 20, duration: 0.6, delay: 0.2 });
+
+        gsap.utils.toArray('.impact-card').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: { trigger: card, start: 'top 90%' },
+                opacity: 0,
+                y: 20,
+                duration: 0.6
+            });
+        });
+
+        gsap.utils.toArray('.service-card').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: { trigger: card, start: 'top 90%' },
+                opacity: 0,
+                y: 20,
+                duration: 0.6
+            });
+        });
+
+        gsap.from('.pricing-table', {
+            scrollTrigger: { trigger: '.pricing-table', start: 'top 90%' },
+            opacity: 0,
+            y: 20,
+            duration: 0.6
+        });
+
+        gsap.from('.discount-card', {
+            scrollTrigger: { trigger: '.discount-card', start: 'top 90%' },
+            opacity: 0,
+            y: 20,
+            duration: 0.6
+        });
+
+        gsap.utils.toArray('.team-card').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: { trigger: card, start: 'top 90%' },
+                opacity: 0,
+                y: 20,
+                duration: 0.6
+            });
+        });
+
+        gsap.from('.order-form', {
+            scrollTrigger: { trigger: '.order-form', start: 'top 90%' },
+            opacity: 0,
+            y: 20,
+            duration: 0.6
+        });
+
+        gsap.from('.feedback-form', {
+            scrollTrigger: { trigger: '.feedback-form', start: 'top 90%' },
+            opacity: 0,
+            y: 20,
+            duration: 0.6
+        });
+
+        gsap.from('.whatsapp-float', {
+            opacity: 0,
+            y: 50,
+            duration: 0.6,
+            delay: 0.5
+        });
+
+        // Animated Counters
+        gsap.utils.toArray('.counter').forEach(counter => {
+            gsap.to(counter, {
+                scrollTrigger: { trigger: counter, start: 'top 90%' },
+                textContent: counter.getAttribute('data-target'),
+                duration: 1,
+                ease: 'power1.out',
+                snap: { textContent: 1 },
+                onUpdate: function() {
+                    counter.textContent = Math.ceil(counter.textContent).toLocaleString();
+                }
+            });
+        });
+
+        // Testimonial Slider with Fade Animation
+        const testimonials = document.querySelectorAll('.testimonial');
+        let currentTestimonial = 0;
+
+        function showTestimonial(index) {
+            testimonials.forEach((t, i) => {
+                if (i === index) {
+                    t.classList.add('active');
+                    gsap.fromTo(t, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 });
+                } else {
+                    t.classList.remove('active');
+                    gsap.to(t, { opacity: 0, y: 20, duration: 0.3 });
+                }
+            });
+        }
+
+        let testimonialInterval = setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 4000);
+
+        document.querySelector('.testimonial-slider').addEventListener('mouseenter', () => {
+            clearInterval(testimonialInterval);
+        });
+
+        document.querySelector('.testimonial-slider').addEventListener('mouseleave', () => {
+            testimonialInterval = setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                showTestimonial(currentTestimonial);
+            }, 4000);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.classList.toggle('active');
+                question.querySelector('span').textContent = answer.classList.contains('active') ? '▲' : '▼';
+            });
+        });
+
+        // Order Form Submission
+        async function submitOrder() {
+            const name = document.getElementById('order-name').value;
+            const email = document.getElementById('order-email').value;
+            const service = document.getElementById('order-service').value;
+            const file = document.getElementById('order-file').files[0];
+            const details = document.getElementById('order-details').value;
+
+            if (!name || !email || !service || !file || !details) {
+                alert('Please fill all fields and upload a file.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('service', service);
+            formData.append('file', file);
+            formData.append('details', details);
+
+            try {
+                const response = await fetch('YOUR_BACKEND_URL/api/orders', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert('Order submitted successfully! We’ll contact you via WhatsApp.');
+                    document.getElementById('order-name').value = '';
+                    document.getElementById('order-email').value = '';
+                    document.getElementById('order-service').value = '';
+                    document.getElementById('order-file').value = '';
+                    document.getElementById('order-details').value = '';
+                } else {
+                    alert(`Error: ${result.message}`);
+                }
+            } catch (error) {
+                alert('Error submitting order. Please try again later.');
+            }
+        }
+
+        // Feedback Form Submission
+        async function submitFeedback() {
+            const name = document.getElementById('feedback-name').value;
+            const email = document.getElementById('feedback-email').value;
+            const feedback = document.getElementById('feedback-text').value;
+            const rating = document.getElementById('feedback-rating').value;
+
+            if (!feedback || !rating) {
+                alert('Please provide feedback and a rating.');
+                return;
+            }
+
+            try {
+                const response = await fetch('YOUR_BACKEND_URL/api/feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, feedback, rating })
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert('Thank you for your feedback!');
+                    document.getElementById('feedback-name').value = '';
+                    document.getElementById('feedback-email').value = '';
+                    document.getElementById('feedback-text').value = '';
+                    document.getElementById('feedback-rating').value = '';
+                } else {
+                    alert(`Error: ${result.message}`);
+                }
+            } catch (error) {
+                alert('Error submitting feedback. Please try again later.');
+            }
+        }
+    </script>
 </body>
 </html>
+```
